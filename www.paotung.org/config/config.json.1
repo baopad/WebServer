@@ -96,10 +96,8 @@ cat > /usr/local/etc/xray/./config.json <<EOF
             "protocol": "shadowsocks",
             "settings": {
                 "method": "chacha20-ietf-poly1305",
-                "password": "3a2cc75a-5fc1-4123-983b-7a1c86a10888"
-            },
-            "streamSettings": {
-                "network": "tcp"
+                "password": "3a2cc75a-5fc1-4123-983b-7a1c86a10888",
+                "network": "tcp,udp"
             }
         },
         {
