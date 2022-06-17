@@ -1,0 +1,121 @@
+cat > /usr/local/etc/xray/./config.json <<EOF
+{
+    "inbounds": [
+        {
+            "listen": "0.0.0.0",
+            "port": 8443,
+            "protocol": "VLESS",
+            "settings": {
+                "clients": [
+                    {
+                        "id": "3a2cc75a-5fc1-4123-983b-7a1c86a10888"
+                    }
+                ],
+                "decryption": "none"
+            },
+            "streamSettings": {
+                "network": "ws",
+                "security": "none"
+            }
+        },
+        {
+            "listen": "0.0.0.0",
+            "port": 8081,
+            "protocol": "vmess",
+            "settings": {
+                "clients": [
+                    {
+                        "id": "3a2cc75a-5fc1-4123-983b-7a1c86a10888"
+                    }
+                ]
+            },
+            "streamSettings": {
+                "network": "tcp",
+                "security": "none"
+            }
+        },
+        {
+            "listen": "0.0.0.0",
+            "port": 8082,
+            "protocol": "vmess",
+            "settings": {
+                "clients": [
+                    {
+                        "id": "3a2cc75a-5fc1-4123-983b-7a1c86a10888"
+                    }
+                ]
+            },
+            "streamSettings": {
+                "network": "mkcp",
+                "security": "none"
+            }
+        },
+        {
+            "listen": "0.0.0.0",
+            "port": 8083,
+            "protocol": "vmess",
+            "settings": {
+                "clients": [
+                    {
+                        "id": "3a2cc75a-5fc1-4123-983b-7a1c86a10888"
+                    }
+                ]
+            },
+            "streamSettings": {
+                "network": "ws",
+                "security": "none"
+            }
+        },
+        {
+            "listen": "0.0.0.0",
+            "port": 8084,
+            "protocol": "vmess",
+            "settings": {
+                "clients": [
+                    {
+                        "id": "3a2cc75a-5fc1-4123-983b-7a1c86a10888"
+                    }
+                ]
+            },
+            "streamSettings": {
+                "network": "http",
+                "security": "tls",
+                "tlsSettings": {
+                    "certificates": [
+                        {
+                            "certificateFile": "/etc/letsencrypt/live/www.paotung.org/fullchain.pem",
+                            "keyFile": "/etc/letsencrypt/live/www.paotung.org/privkey.pem"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "listen": "0.0.0.0",
+            "port": 8085,
+            "protocol": "shadowsocks",
+            "settings": {
+                "method": "chacha20-ietf-poly1305",
+                "password": "3a2cc75a-5fc1-4123-983b-7a1c86a10888"
+            },
+            "streamSettings": {
+                "network": "tcp"
+            }
+        },
+        {
+            "listen": "127.0.0.1", //closed outside link.
+            "port": 8086,
+            "protocol": "socks",
+            "settings": {}
+        }
+    ],
+    "outbounds": [
+        {
+            "protocol": "freedom",
+            "settings": {}
+        }
+    ]
+}
+EOF
+systemctl restart xray
+systemctl status xray
