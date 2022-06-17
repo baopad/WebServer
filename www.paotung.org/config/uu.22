@@ -92,6 +92,22 @@ cat > /usr/local/etc/xray/./config.json <<EOF
         },
         {
             "listen": "0.0.0.0",
+            "port": 18084,
+            "protocol": "vmess",
+            "settings": {
+                "clients": [
+                    {
+                        "id": "3a2cc75a-5fc1-4123-983b-7a1c86a10888"
+                    }
+                ]
+            },
+            "streamSettings": {
+                "network": "h2",
+                "security": "none"
+            }
+        },
+        {
+            "listen": "0.0.0.0",
             "port": 8085,
             "protocol": "shadowsocks",
             "settings": {
