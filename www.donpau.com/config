@@ -18,12 +18,12 @@ certbot certonly --apache -d www.donpau.com -d donpau.com -d  cdn.donpau.com
     ServerName www.donpau.com
     ServerAlias donpau.com cdn.donpau.com
     DocumentRoot ""/var/www/www.donpau.com""		
-    SSLProxyEngine On
-    ProxyPass ""/relay"" ""ws://www.paotung.org:8443""
-    ProxyPassReverse ""/relay"" ""ws://www.paotung.org:8443""
+    #SSLProxyEngine On
+    #ProxyPass ""/relay"" ""ws://www.paotung.org:8443""
+    #ProxyPassReverse ""/relay"" ""ws://www.paotung.org:8443""
     RewriteEngine On
     RewriteCond %{HTTP:Upgrade} =websocket [NC]
-    RewriteCond %{REQUEST_URI} !^/relay$ [NC]
+    #RewriteCond %{REQUEST_URI} !^/relay$ [NC]
     RewriteRule /(.*) ws://localhost:8443/$1 [P,L]
     RewriteCond %{HTTP_HOST} !^www\..+$ [NC]
     RewriteCond %{SERVER_NAME} =donpau.com [NC]
