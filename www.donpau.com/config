@@ -4,7 +4,7 @@ sh -c 'echo "hello world!" > /var/www/www.donpau.com/index.html'
 
 certbot certonly --apache -d www.donpau.com -d donpau.com -d  cdn.donpau.com
 
-"cat > /etc/apache2/sites-available/./www.donpau.com.conf <<EOF
+cat > /etc/apache2/sites-available/./www.donpau.com.conf <<EOF
 <VirtualHost *:80>
     ServerName www.donpau.com
     ServerAlias donpau.com cdn.donpau.com
@@ -38,7 +38,7 @@ EOF
 a2ensite www.donpau.com.conf
 apache2ctl configtest
 systemctl restart apache2
-systemctl status apache2"
+systemctl status apache2
 
 
 
