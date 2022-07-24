@@ -8,7 +8,7 @@ cat > /etc/apache2/sites-available/./www.donpau.com.conf <<EOF
 <VirtualHost *:80>
     ServerName www.donpau.com
     ServerAlias donpau.com cdn.donpau.com
-    DocumentRoot ""/var/www/www.donpau.com""
+    DocumentRoot "/var/www/www.donpau.com"
     RewriteEngine On
     RewriteCond %{HTTPS} off
     RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
@@ -17,10 +17,10 @@ cat > /etc/apache2/sites-available/./www.donpau.com.conf <<EOF
     ServerAdmin info@paotung.org
     ServerName www.donpau.com
     ServerAlias donpau.com cdn.donpau.com
-    DocumentRoot ""/var/www/www.donpau.com""		
+    DocumentRoot "/var/www/www.donpau.com"		
     #SSLProxyEngine On
-    #ProxyPass ""/relay"" ""ws://www.paotung.org:8443""
-    #ProxyPassReverse ""/relay"" ""ws://www.paotung.org:8443""
+    #ProxyPass "/relay" "ws://www.paotung.org:8443"
+    #ProxyPassReverse "/relay" "ws://www.paotung.org:8443"
     RewriteEngine On
     RewriteCond %{HTTP:Upgrade} =websocket [NC]
     #RewriteCond %{REQUEST_URI} !^/relay$ [NC]
@@ -30,9 +30,9 @@ cat > /etc/apache2/sites-available/./www.donpau.com.conf <<EOF
     RewriteCond %{SERVER_NAME} =donpau.com [NC]
     RewriteRule ^ https://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
     SSLEngine On
-    SSLCertificateFile ""/etc/letsencrypt/live/www.donpau.com/fullchain.pem""
-    SSLCertificateKeyFile ""/etc/letsencrypt/live/www.donpau.com/privkey.pem""
-    Include ""/etc/letsencrypt/options-ssl-apache.conf""
+    SSLCertificateFile "/etc/letsencrypt/live/www.donpau.com/fullchain.pem"
+    SSLCertificateKeyFile "/etc/letsencrypt/live/www.donpau.com/privkey.pem"
+    Include "/etc/letsencrypt/options-ssl-apache.conf"
 </VirtualHost>
 EOF
 a2ensite www.donpau.com.conf
