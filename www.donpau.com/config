@@ -26,6 +26,7 @@ certbot certonly --apache -d www.donpau.com -d donpau.com -d  cdn.donpau.com
     #RewriteCond %{REQUEST_URI} !^/relay$ [NC]
     RewriteRule /(.*) ws://localhost:8443/$1 [P,L]
     RewriteCond %{HTTP_HOST} !^www\..+$ [NC]
+    RewriteCond %{HTTP:Upgrade} !=websocket [NC]
     RewriteCond %{SERVER_NAME} =donpau.com [NC]
     RewriteRule ^ https://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
     SSLEngine On
